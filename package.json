@@ -2,6 +2,7 @@
   "name": "parking-ticket-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/parking-ticket/app",
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.0",

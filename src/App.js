@@ -54,7 +54,7 @@ function AppRoutes() {
 function App() {
   return (
     <AppProvider>
-      <Router>
+      <Router basename="/parking-ticket/app">
         <AppRoutes />
       </Router>
     </AppProvider>

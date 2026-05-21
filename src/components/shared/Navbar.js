@@ -24,10 +24,10 @@ export default function Navbar({ isOpen, setIsOpen }) {
   };
 
   const handleSignOut = () => {
-    if (window.location.port === '3000') {
-      window.location.href = `http://${window.location.hostname}:3002/parking-ticket`;
-    } else {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       window.location.href = 'http://localhost:3002/parking-ticket';
+    } else {
+      window.location.href = '/parking-ticket';
     }
   };
 
@@ -59,7 +59,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
           {/* Avatar */}
           <div className="flex flex-col items-center space-y-2 mb-6">
             <div className="w-16 h-16 bg-gray-600 rounded-full overflow-hidden">
-              <img src="/user.jpg" alt="User" className="w-full h-full object-cover" />
+              <img src={`${process.env.PUBLIC_URL}/user.jpg`} alt="User" className="w-full h-full object-cover" />
             </div>
             <h2 className="text-xl font-semibold md:hidden lg:block">DemoUser</h2>
           </div>
