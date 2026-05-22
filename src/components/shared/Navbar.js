@@ -61,7 +61,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
             <div className="w-16 h-16 bg-gray-600 rounded-full overflow-hidden">
               <img src={`${process.env.PUBLIC_URL}/user.jpg`} alt="User" className="w-full h-full object-cover" />
             </div>
-            <h2 className="text-xl font-semibold md:hidden lg:block">DemoUser</h2>
+            <h2 className="text-xl font-semibold md:hidden lg:block">{isAdmin ? 'DemoAdmin' : 'Joe'}</h2>
           </div>
 
           {/* Role Toggle Switch */}

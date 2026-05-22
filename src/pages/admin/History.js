@@ -97,7 +97,7 @@ export default function AdminHistory() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto justify-between md:justify-end">
             <div className="text-left md:text-right text-xs md:text-sm">
               <div className="text-gray-750"><strong>Assigned To:</strong> {c.assigned_to || 'Unassigned'}</div>
-              {c.challan_amount && <div className="text-blue-600 font-semibold mt-0.5">Amount: ₹{c.challan_amount}</div>}
+              {(c.amount || c.challan_amount) && <div className="text-blue-600 font-semibold mt-0.5">Amount: ₹{c.amount || c.challan_amount}</div>}
               <div className="text-xs text-gray-400 mt-0.5">Reviewed: {c.last_reviewed_by || 'N/A'} ({c.last_modified ? new Date(c.last_modified).toLocaleDateString() : 'N/A'})</div>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function AdminHistory() {
             ['registration_plate', 'Vehicle ID'],
             ['created_at', 'Time'],
             ['status', 'Status'],
-            ['challan_amount', 'Amount'],
+            ['amount', 'Amount'],
             ['assigned_to', 'Assigned To'],
             ['layout', 'Location']
           ].map(([col, label]) => (

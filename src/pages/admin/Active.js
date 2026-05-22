@@ -73,7 +73,7 @@ export default function AdminActive() {
         await axios.put(`${BASE}/admin/locations/${id}`, {
           status: 'Closed',
           last_modified: new Date().toISOString(),
-          last_reviewed_by: 'DemoUser'
+          last_reviewed_by: 'DemoAdmin'
         });
         setChallans((prev) => {
           const updated = prev.filter((item) => item._id !== id);
@@ -148,7 +148,7 @@ export default function AdminActive() {
     const updatedData = {
       assigned_to: selectedChallan.assigned_to,
       challan_amount: selectedChallan.challan_amount,
-      last_reviewed_by: 'DemoUser',
+      last_reviewed_by: 'DemoAdmin',
       last_modified: new Date().toISOString(),
     };
     if (updatedData.assigned_to && updatedData.challan_amount) updatedData.status = 'Active';

@@ -96,7 +96,7 @@ export default function ReporteeHistory() {
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto justify-between md:justify-end">
             <div className="text-left md:text-right text-xs md:text-sm">
-              {c.challan_amount && <div className="text-blue-600 font-semibold mt-0.5">Amount: ₹{c.challan_amount}</div>}
+              {(c.amount || c.challan_amount) && <div className="text-blue-600 font-semibold mt-0.5">Amount: ₹{c.amount || c.challan_amount}</div>}
               <div className="text-xs text-gray-400 mt-0.5">Reviewed: {c.last_reviewed_by || 'N/A'} ({c.last_modified ? new Date(c.last_modified).toLocaleDateString() : 'N/A'})</div>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function ReporteeHistory() {
             ['registration_plate', 'Vehicle ID'],
             ['created_at', 'Time'],
             ['status', 'Status'],
-            ['challan_amount', 'Amount'],
+            ['amount', 'Amount'],
             ['layout', 'Location']
           ].map(([col, label]) => (
             <button

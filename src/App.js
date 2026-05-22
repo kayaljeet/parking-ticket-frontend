@@ -14,6 +14,24 @@ import ReporteeActive from './pages/reportee/Active';
 import ReporteeHistory from './pages/reportee/History';
 
 import './App.css';
+import axios from 'axios';
+
+// Configure a global Axios interceptor to append authorization tokens based on the current active role
+axios.interceptors.request.use(
+  (config) => {
+    const role = localStorage.getItem('app_role') || 'admin';
+    const adminToken = process.env.REACT_APP_DEMO_ADMIN_TOKEN || 'demo-admin-token-default';
+    const joeToken = process.env.REACT_APP_DEMO_JOE_TOKEN || 'demo-joe-token-default';
+    const token = role === 'admin' ? adminToken : joeToken;
+    
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 
 function DashboardLayout() {
   const [isOpen, setIsOpen] = React.useState(false);

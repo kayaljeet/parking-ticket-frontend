@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLocation, useOutletContext } from 'react-router-dom';
+import axios from 'axios';
 
 const BASE = process.env.REACT_APP_SERVER_BASE_URL || '/parking-ticket/api';
 
@@ -53,12 +54,12 @@ const MapBoundsSearch = ({ setChallans, setZoom }) => {
     const latMax = bounds.getNorthEast().lat;
     const lngMax = bounds.getNorthEast().lng;
 
-    fetch(`${BASE}/admin/locations?latMin=${latMin}&lngMin=${lngMin}&latMax=${latMax}&lngMax=${lngMax}`)
-      .then((r) => r.json())
+    axios.get(`${BASE}/admin/locations?latMin=${latMin}&lngMin=${lngMin}&latMax=${latMax}&lngMax=${lngMax}`)
       .then((res) => {
-        setChallans(res.data || []);
-        if (res.total > 100) {
-          alert(`Found ${res.total} matching complaints in this area. Only displaying the first 100. Please zoom in to narrow down your search.`);
+        const data = res.data;
+        setChallans(data.data || []);
+        if (data.total > 100) {
+          alert(`Found ${data.total} matching complaints in this area. Only displaying the first 100. Please zoom in to narrow down your search.`);
         }
       })
       .catch(console.error);
@@ -106,9 +107,8 @@ export default function AdminMap() {
     const id = params.get('id');
     const zoomParam = params.get('zoom');
     if (id) {
-      fetch(`${BASE}/admin/locations/${id}`)
-        .then((r) => r.json())
-        .then(setChallanLocation)
+      axios.get(`${BASE}/admin/locations/${id}`)
+        .then((res) => setChallanLocation(res.data))
         .catch(console.error);
       setZoom(zoomParam ? parseInt(zoomParam, 10) : 5);
     }
@@ -119,7 +119,6 @@ export default function AdminMap() {
       className="bg-white rounded-3xl flex-grow flex flex-col p-4 md:p-6 overflow-hidden relative"
       style={{ opacity: isOpen && window.innerWidth < 768 ? 0 : 1 }}
     >
-      <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center flex-shrink-0">Map</h1>
       <div className="rounded-3xl overflow-hidden flex-grow min-h-0 relative">
         <MapContainer
           center={challanLocation ? [challanLocation.latitude, challanLocation.longitude] : [20.5937, 78.9629]}
