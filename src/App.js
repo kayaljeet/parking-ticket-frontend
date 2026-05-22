@@ -54,7 +54,7 @@ function AppRoutes() {
 function App() {
   return (
     <AppProvider>
-      <Router basename="/parking-ticket/app">
+      <Router basename={process.env.PUBLIC_URL}>
         <AppRoutes />
       </Router>
     </AppProvider>

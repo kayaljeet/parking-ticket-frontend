@@ -1,0 +1,11 @@
+{
+  "env": {
+    "PUBLIC_URL": "/"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
