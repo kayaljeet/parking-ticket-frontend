@@ -1,10 +1,38 @@
 {
   "env": {
-    "PUBLIC_URL": "/"
+    "PUBLIC_URL": "/parking-ticket/app"
   },
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/parking-ticket/app/static/:path*",
+      "destination": "/static/:path*"
+    },
+    {
+      "source": "/parking-ticket/app/favicon.ico",
+      "destination": "/favicon.ico"
+    },
+    {
+      "source": "/parking-ticket/app/logo192.png",
+      "destination": "/logo192.png"
+    },
+    {
+      "source": "/parking-ticket/app/logo512.png",
+      "destination": "/logo512.png"
+    },
+    {
+      "source": "/parking-ticket/app/manifest.json",
+      "destination": "/manifest.json"
+    },
+    {
+      "source": "/parking-ticket/app/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/parking-ticket/app/user.jpg",
+      "destination": "/user.jpg"
+    },
+    {
+      "source": "/parking-ticket/app/:path*",
       "destination": "/index.html"
     }
   ]
