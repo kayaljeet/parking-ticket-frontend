@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import { useLocation, useOutletContext } from 'react-router-dom';
 
-const BASE = process.env.REACT_APP_SERVER_BASE_URL;
+const BASE = process.env.REACT_APP_SERVER_BASE_URL || '/parking-ticket/api';
 
 const MapViewSetter = ({ location, zoom }) => {
   const map = useMap();

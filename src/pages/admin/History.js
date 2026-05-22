@@ -7,7 +7,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import AnimatedList from '../../components/ui/AnimatedList';
 
-const BASE = process.env.REACT_APP_SERVER_BASE_URL;
+const BASE = process.env.REACT_APP_SERVER_BASE_URL || '/parking-ticket/api';
 
 export default function AdminHistory() {
   const [challans, setChallans] = useState([]);

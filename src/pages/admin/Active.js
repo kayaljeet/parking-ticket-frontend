@@ -10,7 +10,7 @@ import { Input } from '../../components/ui/input';
 import AnimatedList from '../../components/ui/AnimatedList';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../../components/ui/dialog';
 
-const BASE = process.env.REACT_APP_SERVER_BASE_URL;
+const BASE = process.env.REACT_APP_SERVER_BASE_URL || '/parking-ticket/api';
 
 export default function AdminActive() {
   const navigate = useNavigate();
